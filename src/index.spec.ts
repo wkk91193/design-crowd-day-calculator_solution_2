@@ -30,19 +30,24 @@ describe('BusinessDayCounter', () => {
     });
     it('should accept different rules at the same time', () => {
       expect(
-        dayCounter.BusinessDaysBetweenTwoDates(new Date(2022, 5, 10), new Date(2022, 5, 15), undefined, [
-          {
-            nthDayOfMonth: 2,
-            dayOfTheWeek: DayOfWeek.Monday,
-            month: 5,
-          },
-          {
-            day: 5,
-            month: 5,
-            isOnNextMonday: true,
-          },
-        ])
-      );
+        dayCounter.BusinessDaysBetweenTwoDates(
+          new Date(2022, 5, 10),
+          new Date(2022, 5, 16),
+          [new Date(2013, 5, 15)],
+          [
+            {
+              nthDayOfMonth: 2,
+              dayOfTheWeek: DayOfWeek.Monday,
+              month: 5,
+            },
+            {
+              day: 14,
+              month: 5,
+              isOnNextMonday: true,
+            },
+          ]
+        )
+      ).toBe(1);
     });
   });
 });
